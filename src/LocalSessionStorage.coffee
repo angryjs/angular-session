@@ -20,12 +20,7 @@ class LocalSessionStorage
     @LocalStorage.remove _key
 
 angular.module('angryjs.session')
-  .provider 'LocalSessionStorage', ->
-
-    @STORAGE_NAME = 'LocalSessionStorage'
-
-    @$get = ['LocalStorage', (LocalStorage) ->
+  .factory 'LocalSessionStorage', [
+    'LocalStorage', (LocalStorage) ->
       new LocalSessionStorage LocalStorage
-    ]
-
-    @
+  ]

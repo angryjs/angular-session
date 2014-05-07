@@ -19,11 +19,5 @@ class CurrentSessionStorage
     data[_key] = null
 
 angular.module('angryjs.session')
-  .provider 'CurrentSessionStorage', ->
-
-    @STORAGE_NAME = 'CurrentSessionStorage'
-
-    @$get = ->
-      new CurrentSessionStorage
-
-    @
+  .factory 'CurrentSessionStorage', ->
+    new CurrentSessionStorage

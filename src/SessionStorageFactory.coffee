@@ -1,6 +1,6 @@
 class SessionStorageFactory
 
-  constructor: (@services, @$injector) ->
+  constructor: (@$injector) ->
 
   createStorage: (name) ->
     if !name
@@ -12,20 +12,7 @@ class SessionStorageFactory
       @$injector.invoke name
 
 angular.module('angryjs.session')
-  .provider 'SessionStorageFactory', ->
-
-    services = []
-
-    @addSessionStorage = (name) ->
-      services.push name
-
-    @removeSessionStorage = (name) ->
-      services.filter (x) ->
-        if x != name then x
-
-    @$get = [
-      '$injector', ($injector) ->
-        new SessionStorageFactory services, $injector
-    ]
-
-    @
+  .factory 'SessionStorageFactory', [
+    '$injector', ($injector) ->
+      new SessionStorageFactory $injector
+  ]
